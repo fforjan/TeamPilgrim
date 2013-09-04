@@ -46,9 +46,9 @@ namespace JustAProgrammer.TeamPilgrim.VisualStudio.Business.Services.VisualStudi
             CompareWithWorkspaceVersionMethod.Value.Invoke(_pendingChangesPageViewModelUtilsWrapperInstance, new object[] { workspace, pendingChanges });
         }
 
-        public void CompareWithLatestVersion(Workspace workspace, IList<PendingChange> pendingChanges)
+        public void CompareWithLatestVersion(IList<PendingChange> pendingChanges)
         {
-            CompareWithLatestVersionMethod.Value.Invoke(_pendingChangesPageViewModelUtilsWrapperInstance, new object[] { workspace, pendingChanges });
+            CompareWithLatestVersionMethod.Value.Invoke(_pendingChangesPageViewModelUtilsWrapperInstance, new object[] { pendingChanges });
         }
     }
 }

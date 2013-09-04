@@ -1,45 +1,49 @@
 ﻿<UserControl x:Class="JustAProgrammer.TeamPilgrim.VisualStudio.Windows.PendingChanges.PendingChangesControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:converters="clr-namespace:JustAProgrammer.TeamPilgrim.VisualStudio.Common.Converters"
-             xmlns:versionControlClient="clr-namespace:Microsoft.TeamFoundation.VersionControl.Client;assembly=Microsoft.TeamFoundation.VersionControl.Client"
-             xmlns:system="clr-namespace:System;assembly=mscorlib"
-             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:attachedProperties="clr-namespace:JustAProgrammer.TeamPilgrim.VisualStudio.Common.AttachedProperties"
-             xmlns:enums="clr-namespace:JustAProgrammer.TeamPilgrim.VisualStudio.Common.Enums"
-             xmlns:workItemQuery="clr-namespace:JustAProgrammer.TeamPilgrim.VisualStudio.Model.WorkItemQuery"
-             xmlns:listViewLayout="clr-namespace:Itenso.Windows.Controls.ListViewLayout;assembly=Itenso.Windows.Controls.ListViewLayout"
              xmlns:controls="clr-namespace:JustAProgrammer.TeamPilgrim.VisualStudio.Common.Controls"
+             xmlns:converters="clr-namespace:JustAProgrammer.TeamPilgrim.VisualStudio.Common.Converters"
              xmlns:core="clr-namespace:JustAProgrammer.TeamPilgrim.VisualStudio.Model.Core"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:enums="clr-namespace:JustAProgrammer.TeamPilgrim.VisualStudio.Common.Enums"
+             xmlns:listViewLayout="clr-namespace:Itenso.Windows.Controls.ListViewLayout;assembly=Itenso.Windows.Controls.ListViewLayout"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:versionControl="clr-namespace:JustAProgrammer.TeamPilgrim.VisualStudio.Model.VersionControl"
-             mc:Ignorable="d" 
-             Height="Auto" d:DesignHeight="300" d:DesignWidth="850"
-             d:DataContext="{d:DesignInstance core:TeamPilgrimServiceModel}">
+             xmlns:versionControlClient="clr-namespace:Microsoft.TeamFoundation.VersionControl.Client;assembly=Microsoft.TeamFoundation.VersionControl.Client"
+             xmlns:workItemQuery="clr-namespace:JustAProgrammer.TeamPilgrim.VisualStudio.Model.WorkItemQuery"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             Height="Auto"
+             d:DataContext="{d:DesignInstance core:TeamPilgrimServiceModel}"
+             d:DesignHeight="300"
+             d:DesignWidth="850"
+             mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/TeamPilgrim.VisualStudio;component/Windows\ResourceDictionary.xaml"/>
+                <ResourceDictionary Source="/TeamPilgrim.VisualStudio;component/Windows\ResourceDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            
+
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <converters:SelectedPendingChangesSummaryEnumIsCheckedBooleanConverter x:Key="SelectedPendingChangesSummaryEnumIsCheckedBooleanConverter" />
             <converters:ChangeTypeDescriptionConverter x:Key="ChangeTypeDescriptionConverter" />
             <converters:SingleObjectToObservableCollectionConverter x:Key="SingleObjectToListConverter" />
 
-            <ObjectDataProvider x:Key="WorkItemCheckinActions" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
+            <ObjectDataProvider x:Key="WorkItemCheckinActions"
+                                MethodName="GetValues"
+                                ObjectType="{x:Type system:Enum}">
                 <ObjectDataProvider.MethodParameters>
-                    <x:Type TypeName="enums:SelectedWorkItemCheckinActionEnum"/>
+                    <x:Type TypeName="enums:SelectedWorkItemCheckinActionEnum" />
                 </ObjectDataProvider.MethodParameters>
             </ObjectDataProvider>
 
             <Style TargetType="ToolBar">
-                <Setter Property="ToolBarTray.IsLocked" Value="True"/>
-                <Setter Property="OverflowMode" Value="AsNeeded"/>
+                <Setter Property="ToolBarTray.IsLocked" Value="True" />
+                <Setter Property="OverflowMode" Value="AsNeeded" />
                 <Setter Property="Template" Value="{DynamicResource ToolbarTemplate}" />
             </Style>
-            
+
         </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel>
@@ -66,14 +70,15 @@
                 </Button>
             </ToolBar>
         </ToolBarTray>
-        <TabControl DockPanel.Dock="Right" BorderThickness="0" Padding="0">
+        <TabControl BorderThickness="0"
+                    DockPanel.Dock="Right"
+                    Padding="0">
             <TabControl.Resources>
-                <!--http://stackoverflow.com/questions/6278720/wpf-toggle-panel-visibility-->
+                <!--  http://stackoverflow.com/questions/6278720/wpf-toggle-panel-visibility  -->
                 <Style TargetType="TabItem">
                     <Setter Property="Template">
                         <Setter.Value>
-                            <ControlTemplate TargetType="TabItem">
-                            </ControlTemplate>
+                            <ControlTemplate TargetType="TabItem" />
                         </Setter.Value>
                     </Setter>
                 </Style>
@@ -83,137 +88,159 @@
                 <DockPanel>
                     <ToolBarTray DockPanel.Dock="Top">
                         <ToolBar>
-                            <Button DataContext="{Binding Path=SelectedWorkspaceModel}" Command="{Binding Path=CheckInCommand}">
+                            <Button Command="{Binding Path=CheckInCommand}" DataContext="{Binding Path=SelectedWorkspaceModel}">
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="/TeamPilgrim.VisualStudio;component/Resources\CheckIn_13188.png" Width="16" Height="16" Margin="0,0,2,0"  />
+                                    <Image Width="16"
+                                           Height="16"
+                                           Margin="0,0,2,0"
+                                           Source="/TeamPilgrim.VisualStudio;component/Resources\CheckIn_13188.png" />
                                     <TextBlock>Check In</TextBlock>
                                 </StackPanel>
                             </Button>
 
-                            <Separator/>
+                            <Separator />
 
-                            <Button DataContext="{Binding Path=SelectedWorkspaceModel}" Command="{Binding ShelveCommand}">
+                            <Button Command="{Binding ShelveCommand}" DataContext="{Binding Path=SelectedWorkspaceModel}">
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="../../Resources/shelve.png" Width="16" Height="16" Margin="0,0,2,0"  />
+                                    <Image Width="16"
+                                           Height="16"
+                                           Margin="0,0,2,0"
+                                           Source="../../Resources/shelve.png" />
                                     <TextBlock>Shelve</TextBlock>
                                 </StackPanel>
                             </Button>
 
-                            <Button  DataContext="{Binding Path=SelectedWorkspaceModel}" Command="{Binding UnshelveCommand}">
+                            <Button Command="{Binding UnshelveCommand}" DataContext="{Binding Path=SelectedWorkspaceModel}">
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="../../Resources/unshelve.png" Width="16" Height="16" Margin="0,0,2,0"  />
+                                    <Image Width="16"
+                                           Height="16"
+                                           Margin="0,0,2,0"
+                                           Source="../../Resources/unshelve.png" />
                                     <TextBlock>Unshelve</TextBlock>
                                 </StackPanel>
                             </Button>
 
-                            <Separator/>
-                            <ToggleButton 
-                                DataContext="{Binding Path=SelectedWorkspaceModel}" 
-                                IsEnabled="{Binding Path=SolutionIsOpen}" 
-                                IsChecked="{Binding Path=FilterSolution}"
-                                ToolTip="Filter by Solution">
+                            <Separator />
+                            <ToggleButton DataContext="{Binding Path=SelectedWorkspaceModel}"
+                                          IsChecked="{Binding Path=FilterSolution}"
+                                          IsEnabled="{Binding Path=SolutionIsOpen}"
+                                          ToolTip="Filter by Solution">
 
-                                <Image Source="/TeamPilgrim.VisualStudio;component/Resources\Solution_8308.png" Width="16" Height="16"></Image>
+                                <Image Width="16"
+                                       Height="16"
+                                       Source="/TeamPilgrim.VisualStudio;component/Resources\Solution_8308.png" />
                             </ToggleButton>
 
-                            <Separator/>
+                            <Separator />
 
                             <!--
-                        <Separator />
-                        <ToggleButton IsEnabled="False">Comments</ToggleButton>
-                        
-                        Compare Button Dropdown Disabled/Needs Implementing
-                
-                        <Button>Cmp with Unmodified</Button>
-                        <Button>Cmp with Workspace</Button>
-                        <Button>Cmp with Latest</Button>
-                        -->
+                                <Separator />
+                                <ToggleButton IsEnabled="False">Comments</ToggleButton>
+                                
+                                Compare Button Dropdown Disabled/Needs Implementing
+                                
+                                <Button>Cmp with Unmodified</Button>
+                                <Button>Cmp with Workspace</Button>
+                                <Button>Cmp with Latest</Button>
+                            -->
 
-                            <Button DataContext="{Binding Path=SelectedWorkspaceModel}"
-                                Command="{Binding Path=ViewPendingChangeCommand}" 
-                                CommandParameter="{Binding ElementName=PendingChangesListView, Path=SelectedItems}">View File</Button>
-
-                            <Button DataContext="{Binding Path=SelectedWorkspaceModel}"
-                                Command="{Binding Path=UndoPendingChangeCommand}" 
-                                CommandParameter="{Binding ElementName=PendingChangesListView, Path=SelectedItems}"
-                                ToolTip="Undo pending changes">
-                                <Image Source="/TeamPilgrim.VisualStudio;component/Resources\Arrow_UndoRevertRestore_16xLG.png" Width="16" Height="16"></Image>
+                            <Button Command="{Binding Path=ViewPendingChangeCommand}"
+                                    CommandParameter="{Binding ElementName=PendingChangesListView,
+                                                               Path=SelectedItems}"
+                                    DataContext="{Binding Path=SelectedWorkspaceModel}">
+                                View File
                             </Button>
 
-                            <Separator/>
-
-                            <Button DataContext="{Binding Path=SelectedWorkspaceModel}" Command="{Binding Path=RefreshPendingChangesCommand}">
-                                <Image Source="/TeamPilgrim.VisualStudio;component/Resources\refresh_16xLG.png" Width="16" Height="16" />
+                            <Button Command="{Binding Path=UndoPendingChangeCommand}"
+                                    CommandParameter="{Binding ElementName=PendingChangesListView,
+                                                               Path=SelectedItems}"
+                                    DataContext="{Binding Path=SelectedWorkspaceModel}"
+                                    ToolTip="Undo pending changes">
+                                <Image Width="16"
+                                       Height="16"
+                                       Source="/TeamPilgrim.VisualStudio;component/Resources\Arrow_UndoRevertRestore_16xLG.png" />
                             </Button>
 
-                            <Separator/>
+                            <Separator />
+
+                            <Button Command="{Binding Path=RefreshPendingChangesCommand}" DataContext="{Binding Path=SelectedWorkspaceModel}">
+                                <Image Width="16"
+                                       Height="16"
+                                       Source="/TeamPilgrim.VisualStudio;component/Resources\refresh_16xLG.png" />
+                            </Button>
+
+                            <Separator />
                             <TextBlock VerticalAlignment="Center">Workspace:</TextBlock>
-                            <ComboBox Margin="0" VerticalAlignment="Top" Width="120"
-                          
-                          ItemsSource="{Binding Path=WorkspaceInfoModels}"
-                          SelectedValue="{Binding Path=SelectedWorkspaceInfoModel}">
+                            <ComboBox Width="120"
+                                      Margin="0"
+                                      VerticalAlignment="Top"
+                                      ItemsSource="{Binding Path=WorkspaceInfoModels}"
+                                      SelectedValue="{Binding Path=SelectedWorkspaceInfoModel}">
 
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate DataType="versionControl:WorkspaceInfoModel">
-                                        <TextBlock Text="{Binding Path=WorkspaceInfo.Name}"></TextBlock>
+                                        <TextBlock Text="{Binding Path=WorkspaceInfo.Name}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
 
                         </ToolBar>
                     </ToolBarTray>
-                    
-                    <TextBlock DockPanel.Dock="Top">Comment:</TextBlock>
-                    <TextBox DockPanel.Dock="Top" DataContext="{Binding Path=SelectedWorkspaceModel}" Text="{Binding Path=Comment, UpdateSourceTrigger=PropertyChanged}"></TextBox>
 
-                    <ListView x:Name="PendingChangesListView" HorizontalAlignment="Stretch"
-                              
+                    <TextBlock DockPanel.Dock="Top">Comment:</TextBlock>
+                    <TextBox DataContext="{Binding Path=SelectedWorkspaceModel}"
+                             DockPanel.Dock="Top"
+                             Text="{Binding Path=Comment,
+                                            UpdateSourceTrigger=PropertyChanged}" />
+
+                    <ListView x:Name="PendingChangesListView"
+                              HorizontalAlignment="Stretch"
+                              DataContext="{Binding Path=SelectedWorkspaceModel}"
+                              ItemsSource="{Binding Path=PendingChanges}"
                               VirtualizingStackPanel.IsVirtualizing="True"
                               VirtualizingStackPanel.VirtualizationMode="Recycling"
-                              
-                              listViewLayout:ListViewLayoutManager.Enabled="true"
-                              
                               attachedProperties:GridViewSort.AutoSort="True"
-                              
+                              attachedProperties:PreviewReturnKeyDown.Command="{Binding Path=CompareWithLatestCommand}"
+                              attachedProperties:PreviewReturnKeyDown.CommandParameter="{Binding ElementName=PendingChangesListView,
+                                                                                                 Path=SelectedItems}"
                               attachedProperties:PreviewSpaceKeyDownSelectPendingChanges.Command="{Binding Path=SelectPendingChangesCommand}"
-                              
-                              attachedProperties:PreviewReturnKeyDown.Command="{Binding Path=ViewPendingChangeCommand}"
-                              attachedProperties:PreviewReturnKeyDown.CommandParameter="{Binding ElementName=PendingChangesListView, Path=SelectedItems}"
-                              
-                              DataContext="{Binding Path=SelectedWorkspaceModel}" 
-                              ItemsSource="{Binding Path=PendingChanges}">
+                              listViewLayout:ListViewLayoutManager.Enabled="true">
 
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
-                                <Setter Property="attachedProperties:MouseDoubleClick.Command" Value="{Binding ElementName=PendingChangesListView, Path=DataContext.ViewPendingChangeCommand}"/>
-                                <Setter Property="attachedProperties:MouseDoubleClick.CommandParameter" Value="{Binding Converter={StaticResource SingleObjectToListConverter}}"/>
+                                <Setter Property="attachedProperties:MouseDoubleClick.Command" Value="{Binding ElementName=PendingChangesListView, Path=DataContext.ViewPendingChangeCommand}" />
+                                <Setter Property="attachedProperties:MouseDoubleClick.CommandParameter" Value="{Binding Converter={StaticResource SingleObjectToListConverter}}" />
                             </Style>
                         </ListView.ItemContainerStyle>
                         <ListView.ContextMenu>
-                            <ContextMenu d:DataContext="{d:DesignInstance versionControl:WorkspaceServiceModel}" x:Name="PendingChangesContextMenu">
+                            <ContextMenu x:Name="PendingChangesContextMenu" d:DataContext="{d:DesignInstance versionControl:WorkspaceServiceModel}">
 
-                                <MenuItem Header="View" 
-                                    Command="{Binding Path=ViewPendingChangeCommand}" 
-                                    CommandParameter="{Binding ElementName=PendingChangesListView, Path=SelectedItems}" />
+                                <MenuItem Command="{Binding Path=ViewPendingChangeCommand}"
+                                          CommandParameter="{Binding ElementName=PendingChangesListView,
+                                                                     Path=SelectedItems}"
+                                          Header="View" />
 
                                 <Separator />
                                 <MenuItem Header="Compare">
-                                    
-                                    <MenuItem Header="With workspace version..."
-                                        Command="{Binding Path=CompareWithWorkspaceCommand}" 
-                                        CommandParameter="{Binding ElementName=PendingChangesListView, Path=SelectedItems}" />
 
-                                    <MenuItem Header="With latest version..."
-                                        Command="{Binding Path=CompareWithWorkspaceCommand}" 
-                                        CommandParameter="{Binding ElementName=PendingChangesListView, Path=SelectedItems}" />
-                                    
+                                    <MenuItem Command="{Binding Path=CompareWithWorkspaceCommand}"
+                                              CommandParameter="{Binding ElementName=PendingChangesListView,
+                                                                         Path=SelectedItems}"
+                                              Header="With workspace version..." />
+
+                                    <MenuItem Command="{Binding Path=CompareWithLatestCommand}"
+                                              CommandParameter="{Binding ElementName=PendingChangesListView,
+                                                                         Path=SelectedItems}"
+                                              Header="With latest version..." />
+
                                 </MenuItem>
 
-                                <MenuItem Header="Undo"
-                                    Command="{Binding Path=UndoPendingChangeCommand}" 
-                                    CommandParameter="{Binding ElementName=PendingChangesListView, Path=SelectedItems}">
+                                <MenuItem Command="{Binding Path=UndoPendingChangeCommand}"
+                                          CommandParameter="{Binding ElementName=PendingChangesListView,
+                                                                     Path=SelectedItems}"
+                                          Header="Undo">
                                     <MenuItem.Icon>
-                                        <Image Source="/TeamPilgrim.VisualStudio;component/Resources/Arrow_UndoRevertRestore_16xLG_color.png"/>
+                                        <Image Source="/TeamPilgrim.VisualStudio;component/Resources/Arrow_UndoRevertRestore_16xLG_color.png" />
                                     </MenuItem.Icon>
                                 </MenuItem>
 
@@ -223,28 +250,27 @@
                             <GridView>
                                 <GridViewColumn listViewLayout:FixedColumn.Width="20">
                                     <GridViewColumn.Header>
-                                        <controls:CustomCheckBox
-                                            x:Name="PendingChangesAllCheckbox"
-                                            IsThreeState="true"
-                                            IsChecked="{Binding Path=PendingChangesSummary, Converter={StaticResource SelectedPendingChangesSummaryEnumIsCheckedBooleanConverter}, Mode=OneWay}"
-                                            Click="PendingChangesAllCheckboxOnClick" />
+                                        <controls:CustomCheckBox x:Name="PendingChangesAllCheckbox"
+                                                                 Click="PendingChangesAllCheckboxOnClick"
+                                                                 IsChecked="{Binding Path=PendingChangesSummary,
+                                                                                     Converter={StaticResource SelectedPendingChangesSummaryEnumIsCheckedBooleanConverter},
+                                                                                     Mode=OneWay}"
+                                                                 IsThreeState="true" />
                                     </GridViewColumn.Header>
-                                    
+
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <CheckBox
-                                                    DataContext="{Binding}"
-                                                    IsChecked="{Binding Path=IncludeChange, Mode=OneWay}" 
-                                                    Click="PendingChangesCheckboxClicked"/>
+                                            <CheckBox Click="PendingChangesCheckboxClicked"
+                                                      DataContext="{Binding}"
+                                                      IsChecked="{Binding Path=IncludeChange,
+                                                                          Mode=OneWay}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                
-                                <GridViewColumn
-                                        x:Name="GridViewColumnPendingChangesFileName"
-                                        attachedProperties:GridViewSort.PropertyName="Change.FileName"
-                                    
-                                        listViewLayout:RangeColumn.MinWidth="150">
+
+                                <GridViewColumn x:Name="GridViewColumnPendingChangesFileName"
+                                                attachedProperties:GridViewSort.PropertyName="Change.FileName"
+                                                listViewLayout:RangeColumn.MinWidth="150">
 
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader Style="{StaticResource TextGridViewColumnHeader}">File</GridViewColumnHeader>
@@ -252,16 +278,14 @@
 
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate DataType="versionControl:PendingChangeModel">
-                                            <TextBlock Text="{Binding Path=Change.FileName, Mode=OneWay}" DockPanel.Dock="Right"/>
+                                            <TextBlock DockPanel.Dock="Right" Text="{Binding Path=Change.FileName, Mode=OneWay}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn
-                                        x:Name="GridViewColumnPendingChangesChangeTypeName"
-
-                                        listViewLayout:RangeColumn.MinWidth="70"
-                                        attachedProperties:GridViewSort.PropertyName="Change.ChangeTypeName">
+                                <GridViewColumn x:Name="GridViewColumnPendingChangesChangeTypeName"
+                                                attachedProperties:GridViewSort.PropertyName="Change.ChangeTypeName"
+                                                listViewLayout:RangeColumn.MinWidth="70">
 
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader Style="{StaticResource TextGridViewColumnHeader}">Change</GridViewColumnHeader>
@@ -269,18 +293,15 @@
 
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate DataType="versionControl:PendingChangeModel">
-                                            <TextBlock Text="{Binding Path=Change, Mode=OneWay, Converter={StaticResource ChangeTypeDescriptionConverter}}"/>
+                                            <TextBlock Text="{Binding Path=Change, Mode=OneWay, Converter={StaticResource ChangeTypeDescriptionConverter}}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn 
-                                        x:Name="GridViewColumnPendingChangesLocalOrServerFolder"
-
-                                        listViewLayout:RangeColumn.MinWidth="200"
-                                        listViewLayout:RangeColumn.IsFillColumn="true"
-
-                                        attachedProperties:GridViewSort.PropertyName="Change.LocalOrServerFolder">
+                                <GridViewColumn x:Name="GridViewColumnPendingChangesLocalOrServerFolder"
+                                                attachedProperties:GridViewSort.PropertyName="Change.LocalOrServerFolder"
+                                                listViewLayout:RangeColumn.IsFillColumn="true"
+                                                listViewLayout:RangeColumn.MinWidth="200">
 
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader Style="{StaticResource TextGridViewColumnHeader}">Folder</GridViewColumnHeader>
@@ -288,7 +309,7 @@
 
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate DataType="versionControl:PendingChangeModel">
-                                            <TextBlock Text="{Binding Path=Change.LocalOrServerFolder, Mode=OneWay}"/>
+                                            <TextBlock Text="{Binding Path=Change.LocalOrServerFolder, Mode=OneWay}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -300,134 +321,123 @@
             <TabItem x:Name="WorkItemsTabItem" IsSelected="{Binding ElementName=WorkItemsRadioButton, Path=IsChecked}">
                 <DockPanel>
                     <ToolBar DockPanel.Dock="Top">
-                        <Button DataContext="{Binding Path=SelectedWorkspaceModel}" Command="{Binding Path=CheckInCommand}">
+                        <Button Command="{Binding Path=CheckInCommand}" DataContext="{Binding Path=SelectedWorkspaceModel}">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="/TeamPilgrim.VisualStudio;component/Resources\CheckIn_13188.png" Width="16" Height="16" Margin="0,0,2,0"  />
+                                <Image Width="16"
+                                       Height="16"
+                                       Margin="0,0,2,0"
+                                       Source="/TeamPilgrim.VisualStudio;component/Resources\CheckIn_13188.png" />
                                 <TextBlock>Check In</TextBlock>
                             </StackPanel>
                         </Button>
-                        
+
                         <Separator />
-                        
+
                         <TextBlock>Query:</TextBlock>
-                        
-                        <ComboBox Width="200" 
-                                  DataContext="{Binding Path=SelectedWorkspaceModel}" 
+
+                        <ComboBox Width="200"
+                                  DataContext="{Binding Path=SelectedWorkspaceModel}"
                                   DisplayMemberPath="Formatted"
+                                  IsEditable="False"
                                   ItemsSource="{Binding Path=PreviouslySelectedWorkItemQueries}"
-                                  SelectedItem="{Binding Path=CurrentPreviouslySelectedWorkItemQuery}"
-                                  
-                                  IsEditable="False"></ComboBox>
-                        
-                        <Button DataContext="{Binding Path=SelectedWorkspaceModel}" Command="{Binding Path=ShowSelectWorkItemQueryCommand}">...</Button>
+                                  SelectedItem="{Binding Path=CurrentPreviouslySelectedWorkItemQuery}" />
 
-                        <Separator/>
+                        <Button Command="{Binding Path=ShowSelectWorkItemQueryCommand}" DataContext="{Binding Path=SelectedWorkspaceModel}">...</Button>
 
-                        <Button DataContext="{Binding Path=SelectedWorkspaceModel}" Command="{Binding Path=RefreshSelectedDefinitionWorkItemsCommand}">
-                            <Image Source="/TeamPilgrim.VisualStudio;component/Resources\refresh_16xLG.png" Width="16" Height="16" />
+                        <Separator />
+
+                        <Button Command="{Binding Path=RefreshSelectedDefinitionWorkItemsCommand}" DataContext="{Binding Path=SelectedWorkspaceModel}">
+                            <Image Width="16"
+                                   Height="16"
+                                   Source="/TeamPilgrim.VisualStudio;component/Resources\refresh_16xLG.png" />
                         </Button>
                     </ToolBar>
 
-                    <ListView x:Name="WorkItemsListView" DockPanel.Dock="Bottom" 
-                              
+                    <ListView x:Name="WorkItemsListView"
+                              DataContext="{Binding Path=SelectedWorkspaceModel}"
+                              DockPanel.Dock="Bottom"
+                              ItemsSource="{Binding Path=WorkItems}"
                               VirtualizingStackPanel.IsVirtualizing="True"
                               VirtualizingStackPanel.VirtualizationMode="Recycling"
-                              
-                              listViewLayout:ListViewLayoutManager.Enabled="true"
-                              
                               attachedProperties:GridViewSort.AutoSort="True"
-                              
-                              attachedProperties:PreviewSpaceKeyDownSelectWorkItems.Command="{Binding Path=SelectWorkItemsCommand}"
-                              
                               attachedProperties:PreviewReturnKeyDown.Command="{Binding Path=ViewWorkItemCommand}"
-                              attachedProperties:PreviewReturnKeyDown.CommandParameter="{Binding ElementName=WorkItemsListView, Path=SelectedItems}"
-                              
-                              DataContext="{Binding Path=SelectedWorkspaceModel}" 
-                              ItemsSource="{Binding Path=WorkItems}">
-                        
+                              attachedProperties:PreviewReturnKeyDown.CommandParameter="{Binding ElementName=WorkItemsListView,
+                                                                                                 Path=SelectedItems}"
+                              attachedProperties:PreviewSpaceKeyDownSelectWorkItems.Command="{Binding Path=SelectWorkItemsCommand}"
+                              listViewLayout:ListViewLayoutManager.Enabled="true">
+
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
-                                <Setter Property="attachedProperties:MouseDoubleClick.Command" Value="{Binding ElementName=WorkItemsListView, Path=DataContext.ViewWorkItemCommand}"/>
-                                <Setter Property="attachedProperties:MouseDoubleClick.CommandParameter" Value="{Binding Converter={StaticResource SingleObjectToListConverter}}"/>
+                                <Setter Property="attachedProperties:MouseDoubleClick.Command" Value="{Binding ElementName=WorkItemsListView, Path=DataContext.ViewWorkItemCommand}" />
+                                <Setter Property="attachedProperties:MouseDoubleClick.CommandParameter" Value="{Binding Converter={StaticResource SingleObjectToListConverter}}" />
                             </Style>
                         </ListView.ItemContainerStyle>
-                        
+
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn listViewLayout:FixedColumn.Width="20">
-                                    
+
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate DataType="workItemQuery:WorkItemModel">
-                                            <CheckBox IsChecked="{Binding Path=IsSelected, Mode=OneWay}"
+                                            <CheckBox Click="PendingChangeWorkItemCheckboxClicked"
                                                       DataContext="{Binding}"
-                                                      Click="PendingChangeWorkItemCheckboxClicked" />
+                                                      IsChecked="{Binding Path=IsSelected,
+                                                                          Mode=OneWay}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn
-                                    
-                                    x:Name="GridViewColumnWorkItemsCheckinAction"
-                                    attachedProperties:GridViewSort.PropertyName="IsSelectedWorkItemCheckinAction"
-                                    
-                                    listViewLayout:RangeColumn.MinWidth="115" >
-                                    
+                                <GridViewColumn x:Name="GridViewColumnWorkItemsCheckinAction"
+                                                attachedProperties:GridViewSort.PropertyName="IsSelectedWorkItemCheckinAction"
+                                                listViewLayout:RangeColumn.MinWidth="115">
+
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader Style="{StaticResource TextGridViewColumnHeader}">Check-in Action</GridViewColumnHeader>
                                     </GridViewColumn.Header>
-                                    
+
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate DataType="workItemQuery:WorkItemModel">
-                                            <ComboBox 
-                                                Visibility="{Binding Path=IsSelected, Converter={StaticResource ResourceKey=BooleanToVisibilityConverter}}"
-                                                ItemsSource="{Binding Source={StaticResource ResourceKey=WorkItemCheckinActions}}" 
-                                                SelectedItem="{Binding Path=WorkItemCheckinAction}" />
+                                            <ComboBox ItemsSource="{Binding Source={StaticResource ResourceKey=WorkItemCheckinActions}}"
+                                                      SelectedItem="{Binding Path=WorkItemCheckinAction}"
+                                                      Visibility="{Binding Path=IsSelected,
+                                                                           Converter={StaticResource ResourceKey=BooleanToVisibilityConverter}}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn 
-                                    
-                                    x:Name="GridViewColumnWorkItemsId"
-                                    attachedProperties:GridViewSort.PropertyName="WorkItem.Id"
-                                    
-                                    listViewLayout:RangeColumn.MinWidth="75">
+                                <GridViewColumn x:Name="GridViewColumnWorkItemsId"
+                                                attachedProperties:GridViewSort.PropertyName="WorkItem.Id"
+                                                listViewLayout:RangeColumn.MinWidth="75">
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader Style="{StaticResource TextGridViewColumnHeader}">ID</GridViewColumnHeader>
                                     </GridViewColumn.Header>
-                                    
+
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate DataType="workItemQuery:WorkItemModel">
-                                            <TextBlock Text="{Binding Path=WorkItem.Id, Mode=OneWay}"/>
+                                            <TextBlock Text="{Binding Path=WorkItem.Id, Mode=OneWay}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn
-                                    
-                                    x:Name="GridViewColumnWorkItemsType"
-                                    attachedProperties:GridViewSort.PropertyName="WorkItem.Type.Name"
-                                    
-                                    listViewLayout:RangeColumn.MinWidth="80">
-                                    
+                                <GridViewColumn x:Name="GridViewColumnWorkItemsType"
+                                                attachedProperties:GridViewSort.PropertyName="WorkItem.Type.Name"
+                                                listViewLayout:RangeColumn.MinWidth="80">
+
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader Style="{StaticResource TextGridViewColumnHeader}">Type</GridViewColumnHeader>
                                     </GridViewColumn.Header>
-                                    
+
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate DataType="workItemQuery:WorkItemModel">
-                                            <TextBlock Text="{Binding Path=WorkItem.Type.Name, Mode=OneWay}"/>
+                                            <TextBlock Text="{Binding Path=WorkItem.Type.Name, Mode=OneWay}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
-                                <GridViewColumn
-                                                                        
-                                    x:Name="GridViewColumnWorkItemsTitle"
-                                    attachedProperties:GridViewSort.PropertyName="WorkItem.Title"
-                                    
-                                    listViewLayout:RangeColumn.MinWidth="80"
-                                    listViewLayout:RangeColumn.IsFillColumn="True">
+                                <GridViewColumn x:Name="GridViewColumnWorkItemsTitle"
+                                                attachedProperties:GridViewSort.PropertyName="WorkItem.Title"
+                                                listViewLayout:RangeColumn.IsFillColumn="True"
+                                                listViewLayout:RangeColumn.MinWidth="80">
 
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader Style="{StaticResource TextGridViewColumnHeader}">Title</GridViewColumnHeader>
@@ -435,7 +445,7 @@
 
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate DataType="workItemQuery:WorkItemModel">
-                                            <TextBlock Text="{Binding Path=WorkItem.Title, Mode=OneWay}"/>
+                                            <TextBlock Text="{Binding Path=WorkItem.Title, Mode=OneWay}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -444,23 +454,25 @@
                     </ListView>
                 </DockPanel>
             </TabItem>
-            <TabItem x:Name="CheckInNotesTabItem"  IsSelected="{Binding ElementName=CheckInNotesRadioButton, Path=IsChecked}">
+            <TabItem x:Name="CheckInNotesTabItem" IsSelected="{Binding ElementName=CheckInNotesRadioButton, Path=IsChecked}">
                 <DockPanel>
                     <ToolBar DockPanel.Dock="Top">
-                        <Button DataContext="{Binding Path=SelectedWorkspaceModel}" Command="{Binding Path=CheckInCommand}">
+                        <Button Command="{Binding Path=CheckInCommand}" DataContext="{Binding Path=SelectedWorkspaceModel}">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="/TeamPilgrim.VisualStudio;component/Resources\CheckIn_13188.png" Width="16" Height="16" Margin="0,0,2,0"  />
+                                <Image Width="16"
+                                       Height="16"
+                                       Margin="0,0,2,0"
+                                       Source="/TeamPilgrim.VisualStudio;component/Resources\CheckIn_13188.png" />
                                 <TextBlock>Check In</TextBlock>
                             </StackPanel>
                         </Button>
                     </ToolBar>
-                    <ListView DockPanel.Dock="Bottom" HorizontalContentAlignment="Stretch"
-                              
-                              VirtualizingStackPanel.IsVirtualizing="True"
-                              VirtualizingStackPanel.VirtualizationMode="Recycling"
-                              
+                    <ListView HorizontalContentAlignment="Stretch"
                               DataContext="{Binding Path=SelectedWorkspaceModel}"
-                              ItemsSource="{Binding Path=CheckinNotes}">
+                              DockPanel.Dock="Bottom"
+                              ItemsSource="{Binding Path=CheckinNotes}"
+                              VirtualizingStackPanel.IsVirtualizing="True"
+                              VirtualizingStackPanel.VirtualizationMode="Recycling">
                         <ListView.ItemTemplate>
                             <DataTemplate DataType="versionControl:CheckinNoteModel">
                                 <Expander Header="{Binding Path=CheckinNoteFieldDefinition.Name}" IsExpanded="True">
@@ -484,32 +496,31 @@
             <TabItem x:Name="PolicyWarningsTabItem" IsSelected="{Binding ElementName=PolicyWarningsRadioButton, Path=IsChecked}">
                 <DockPanel Name="PolicyWarningsDataDockPanel">
                     <ToolBar DockPanel.Dock="Top">
-                        <Button DataContext="{Binding Path=SelectedWorkspaceModel}" Command="{Binding Path=CheckInCommand}">
+                        <Button Command="{Binding Path=CheckInCommand}" DataContext="{Binding Path=SelectedWorkspaceModel}">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="/TeamPilgrim.VisualStudio;component/Resources\CheckIn_13188.png" Width="16" Height="16" Margin="0,0,2,0" />
+                                <Image Width="16"
+                                       Height="16"
+                                       Margin="0,0,2,0"
+                                       Source="/TeamPilgrim.VisualStudio;component/Resources\CheckIn_13188.png" />
                                 <TextBlock>Check In</TextBlock>
                             </StackPanel>
                         </Button>
                     </ToolBar>
-                    <ListView
-                        VirtualizingStackPanel.IsVirtualizing="True"
-                        VirtualizingStackPanel.VirtualizationMode="Recycling"
-                        
-                        listViewLayout:ListViewLayoutManager.Enabled="true"
-                        
-                        DataContext="{Binding Path=SelectedWorkspaceModel.CheckinEvaluationResult}" 
-                        ItemsSource="{Binding Path=PolicyFailures}">
+                    <ListView DataContext="{Binding Path=SelectedWorkspaceModel.CheckinEvaluationResult}"
+                              ItemsSource="{Binding Path=PolicyFailures}"
+                              VirtualizingStackPanel.IsVirtualizing="True"
+                              VirtualizingStackPanel.VirtualizationMode="Recycling"
+                              listViewLayout:ListViewLayoutManager.Enabled="true">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn listViewLayout:RangeColumn.MinWidth="200"
-                                                listViewLayout:RangeColumn.IsFillColumn="True">
+                                <GridViewColumn listViewLayout:RangeColumn.IsFillColumn="True" listViewLayout:RangeColumn.MinWidth="200">
                                     <GridViewColumn.Header>
                                         <GridViewColumnHeader Style="{StaticResource TextGridViewColumnHeader}">Description</GridViewColumnHeader>
                                     </GridViewColumn.Header>
-                                    
+
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate DataType="versionControlClient:PolicyFailure">
-                                            <TextBlock Text="{Binding Path=Message}"/>
+                                            <TextBlock Text="{Binding Path=Message}" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>

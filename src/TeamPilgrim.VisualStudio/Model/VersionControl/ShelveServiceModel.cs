@@ -493,7 +493,7 @@ namespace JustAProgrammer.TeamPilgrim.VisualStudio.Model.VersionControl
 
         private void CompareWithLatest(ObservableCollection<object> collection)
         {
-            teamPilgrimVsService.CompareChangesetChangesWithLatestVersions(_workspaceServiceModel.Workspace, collection.Cast<PendingChangeModel>().Select(model => model.Change).ToArray());
+            teamPilgrimVsService.CompareChangesetChangesWithLatestVersions(collection.Cast<PendingChangeModel>().Select(model => model.Change).ToArray());
         }
 
         private bool CanCompareWithLatest(ObservableCollection<object> collection)

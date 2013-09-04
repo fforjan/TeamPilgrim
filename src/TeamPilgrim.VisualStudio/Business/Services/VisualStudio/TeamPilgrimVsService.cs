@@ -233,9 +233,9 @@ namespace JustAProgrammer.TeamPilgrim.VisualStudio.Business.Services.VisualStudi
             }
         }
 
-        public void CompareChangesetChangesWithLatestVersions(Workspace workspace, IList<PendingChange> pendingChanges)
+        public void CompareChangesetChangesWithLatestVersions(IList<PendingChange> pendingChanges)
         {
-            _pendingChangesPageViewModelUtilsWrapper.Value.CompareWithLatestVersion(workspace, pendingChanges);
+            _pendingChangesPageViewModelUtilsWrapper.Value.CompareWithLatestVersion(pendingChanges);
         }
 
         public void CompareChangesetChangesWithWorkspaceVersions(Workspace workspace, IList<PendingChange> pendingChanges)
