@@ -2,8 +2,9 @@
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
     <Identity Id="f56b8666-3ef2-46e5-ac26-8aa0efe1f484" Version="0.2.1" Language="en-US" Publisher="JustAProgrammer" />
-    <DisplayName>TeamPilgrim</DisplayName>
-    <Description xml:space="preserve">A replacement for Visual Studio 2012's Team Explorer inspired by the Visual Studio 2010's Team Explorer</Description>
+    <DisplayName>TeamPilgrim (SE)</DisplayName>
+    <Description xml:space="preserve">A replacement for Visual Studio 2012's Team Explorer inspired by the Visual Studio 2010's Team Explorer
+This is a forked version within Schneider Electric Australia</Description>
   </Metadata>
   <Installation InstalledByMsi="false">
     <InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="11.0" />
