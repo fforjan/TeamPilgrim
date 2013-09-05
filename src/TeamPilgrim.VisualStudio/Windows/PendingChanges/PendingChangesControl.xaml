@@ -304,7 +304,7 @@
                                                 listViewLayout:RangeColumn.MinWidth="200">
 
                                     <GridViewColumn.Header>
-                                        <GridViewColumnHeader Style="{StaticResource TextGridViewColumnHeader}" attachedProperties:GridViewSort.SecondarySortColumn="File">Folder</GridViewColumnHeader>
+                                        <GridViewColumnHeader Style="{StaticResource TextGridViewColumnHeader}" attachedProperties:GridViewSort.SecondarySortColumn="Change.FileName">Folder</GridViewColumnHeader>
                                     </GridViewColumn.Header>
 
                                     <GridViewColumn.CellTemplate>
