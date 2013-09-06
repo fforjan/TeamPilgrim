@@ -213,8 +213,11 @@
                               VirtualizingStackPanel.IsVirtualizing="True"
                               VirtualizingStackPanel.VirtualizationMode="Recycling"
                               attachedProperties:GridViewSort.AutoSort="True"
-                              attachedProperties:PreviewReturnKeyDown.Command="{Binding Path=CompareWithLatestCommand}"
-                              attachedProperties:PreviewReturnKeyDown.CommandParameter="{Binding ElementName=PendingChangesListView,
+                              attachedProperties:PreviewKeyDownReturnOnly.Command="{Binding Path=ViewPendingChangeCommand}"
+                              attachedProperties:PreviewKeyDownReturnOnly.CommandParameter="{Binding ElementName=PendingChangesListView,
+                                                                                                 Path=SelectedItems}"
+                              attachedProperties:PreviewKeyDownReturnPlusShift.Command="{Binding Path=CompareWithLatestCommand}"
+                              attachedProperties:PreviewKeyDownReturnPlusShift.CommandParameter="{Binding ElementName=PendingChangesListView,
                                                                                                  Path=SelectedItems}"
                               attachedProperties:PreviewSpaceKeyDownSelectPendingChanges.Command="{Binding Path=SelectPendingChangesCommand}"
                               listViewLayout:ListViewLayoutManager.Enabled="true">
@@ -373,8 +376,8 @@
                               VirtualizingStackPanel.IsVirtualizing="True"
                               VirtualizingStackPanel.VirtualizationMode="Recycling"
                               attachedProperties:GridViewSort.AutoSort="True"
-                              attachedProperties:PreviewReturnKeyDown.Command="{Binding Path=ViewWorkItemCommand}"
-                              attachedProperties:PreviewReturnKeyDown.CommandParameter="{Binding ElementName=WorkItemsListView,
+                              attachedProperties:PreviewKeyDownReturnOnly.Command="{Binding Path=ViewWorkItemCommand}"
+                              attachedProperties:PreviewKeyDownReturnOnly.CommandParameter="{Binding ElementName=WorkItemsListView,
                                                                                                  Path=SelectedItems}"
                               attachedProperties:PreviewSpaceKeyDownSelectWorkItems.Command="{Binding Path=SelectWorkItemsCommand}"
                               listViewLayout:ListViewLayoutManager.Enabled="true">

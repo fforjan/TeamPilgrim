@@ -1,18 +1,23 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace JustAProgrammer.TeamPilgrim.VisualStudio.Common.AttachedProperties
 {
-    public class PreviewReturnKeyDown
+	using System;
+
+	public class PreviewKeyDown<T> where T : IKeyEventSelector, new()
     {
+		private static readonly T selector = new T();
+ 
         public static DependencyProperty CommandProperty =
             DependencyProperty.RegisterAttached("Command",
-                                                typeof(ICommand), typeof(PreviewReturnKeyDown), new UIPropertyMetadata(CommandChanged));
+												typeof(ICommand), typeof(PreviewKeyDown<T>), new UIPropertyMetadata(CommandChanged));
 
         public static DependencyProperty CommandParameterProperty =
             DependencyProperty.RegisterAttached("CommandParameter",
-                                                typeof(object), typeof(PreviewReturnKeyDown), new UIPropertyMetadata(null));
+												typeof(object), typeof(PreviewKeyDown<T>), new UIPropertyMetadata(null));
 
         public static void SetCommand(DependencyObject target, ICommand value)
         {
@@ -45,17 +50,17 @@ namespace JustAProgrammer.TeamPilgrim.VisualStudio.Common.AttachedProperties
             }
         }
 
-        private static void OnPreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key != Key.Return)
-                return;
+		private static void OnPreviewKeyDown(object sender, KeyEventArgs e)
+		{
+			if (selector.CanExecute(sender, e))
+			{
+				e.Handled = true;
 
-            e.Handled = true;
-
-            var control = (Control)sender;
-            var command = (ICommand)control.GetValue(CommandProperty);
-            var commandParameter = control.GetValue(CommandParameterProperty);
-            command.Execute(commandParameter);
-        }
+				var control = (Control)sender;
+				var command = (ICommand)control.GetValue(CommandProperty);
+				var commandParameter = control.GetValue(CommandParameterProperty);
+				command.Execute(commandParameter);
+			}
+		}
     }
 }
