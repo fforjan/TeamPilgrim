@@ -130,8 +130,11 @@
     <Compile Include="Business\Services\VisualStudio\WorkItems\OpenWorkItemHelperWrapper.cs" />
     <Compile Include="Business\Services\VisualStudio\WorkItems\WitDefaultCommandHandlerWrapper.cs" />
     <Compile Include="Common\AttachedProperties\GridViewSort.cs" />
+    <Compile Include="Common\AttachedProperties\IKeyEventSelector.cs" />
+    <Compile Include="Common\AttachedProperties\PreviewKeyDownReturnOnly.cs" />
+    <Compile Include="Common\AttachedProperties\PreviewKeyDownReturnPlusShift.cs" />
     <Compile Include="Common\AttachedProperties\PreviewSpaceKeyDownSelectPendingChanges.cs" />
-    <Compile Include="Common\AttachedProperties\PreviewReturnKeyDown.cs" />
+    <Compile Include="Common\AttachedProperties\PreviewKeyDown.cs" />
     <Compile Include="Common\AttachedProperties\PreviewSpaceKeyDown.cs" />
     <Compile Include="Common\AttachedProperties\PreviewSpaceKeyDownSelectWorkItems.cs" />
     <Compile Include="Common\Controls\CustomCheckbox.cs" />

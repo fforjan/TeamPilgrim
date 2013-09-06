@@ -41,8 +41,8 @@
                               
                 attachedProperties:GridViewSort.AutoSort="True"
                                                            
-                attachedProperties:PreviewReturnKeyDown.Command="{Binding Path=ViewPendingSetCommand}"
-                attachedProperties:PreviewReturnKeyDown.CommandParameter="{Binding ElementName=PendingSetsListView, Path=SelectedItem}"
+                attachedProperties:PreviewKeyDownReturnOnly.Command="{Binding Path=ViewPendingSetCommand}"
+                attachedProperties:PreviewKeyDownReturnOnly.CommandParameter="{Binding ElementName=PendingSetsListView, Path=SelectedItem}"
                               
                 ItemsSource="{Binding Path=Shelvesets}">
             <ListView.View>

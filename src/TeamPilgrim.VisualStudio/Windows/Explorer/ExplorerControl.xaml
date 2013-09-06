@@ -52,23 +52,23 @@
                     <Setter Property="attachedProperties:MouseDoubleClick.Command" Value="{Binding Path=WorkItemQueryCommandModel.OpenQueryDefinitionCommand}"/>
                     <Setter Property="attachedProperties:MouseDoubleClick.CommandParameter" Value="{Binding}"/>
 
-                    <Setter Property="attachedProperties:PreviewReturnKeyDown.Command" Value="{Binding Path=WorkItemQueryCommandModel.OpenQueryDefinitionCommand}"/>
-                    <Setter Property="attachedProperties:PreviewReturnKeyDown.CommandParameter" Value="{Binding}"/>
+                    <Setter Property="attachedProperties:PreviewKeyDownReturnOnly.Command" Value="{Binding Path=WorkItemQueryCommandModel.OpenQueryDefinitionCommand}"/>
+                    <Setter Property="attachedProperties:PreviewKeyDownReturnOnly.CommandParameter" Value="{Binding}"/>
                 </Style>
 
                 <Style TargetType="{x:Type TreeViewItem}"  x:Key="BuildDefinitionStyle" BasedOn="{StaticResource ResourceKey=DefaultStyle}">
                     <Setter Property="attachedProperties:MouseDoubleClick.Command" Value="{Binding Path=BuildDefinitionCommandModel.ViewBuildsCommand}"/>
                     <Setter Property="attachedProperties:MouseDoubleClick.CommandParameter" Value="{Binding}"/>
 
-                    <Setter Property="attachedProperties:PreviewReturnKeyDown.Command" Value="{Binding Path=BuildDefinitionCommandModel.ViewBuildsCommand}"/>
-                    <Setter Property="attachedProperties:PreviewReturnKeyDown.CommandParameter" Value="{Binding}"/>
+                    <Setter Property="attachedProperties:PreviewKeyDownReturnOnly.Command" Value="{Binding Path=BuildDefinitionCommandModel.ViewBuildsCommand}"/>
+                    <Setter Property="attachedProperties:PreviewKeyDownReturnOnly.CommandParameter" Value="{Binding}"/>
                 </Style>
 
                 <Style TargetType="{x:Type TreeViewItem}"  x:Key="SourceControlStyle" BasedOn="{StaticResource ResourceKey=DefaultStyle}">
                     <Setter Property="attachedProperties:MouseDoubleClick.Command" 
                             Value="{Binding Path=DataContext.OpenSourceControlCommand, RelativeSource={RelativeSource AncestorLevel=1, AncestorType={x:Type TreeViewItem}, Mode=FindAncestor}}"/>
 
-                    <Setter Property="attachedProperties:PreviewReturnKeyDown.Command"
+                    <Setter Property="attachedProperties:PreviewKeyDownReturnOnly.Command"
                             Value="{Binding Path=DataContext.OpenSourceControlCommand, RelativeSource={RelativeSource AncestorLevel=1, AncestorType={x:Type TreeViewItem}, Mode=FindAncestor}}"/>
                 </Style>
                 
