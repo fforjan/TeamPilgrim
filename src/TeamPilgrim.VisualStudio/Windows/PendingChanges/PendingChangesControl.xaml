@@ -88,7 +88,9 @@
                 <DockPanel>
                     <ToolBarTray DockPanel.Dock="Top">
                         <ToolBar>
-                            <Button Command="{Binding Path=CheckInCommand}" DataContext="{Binding Path=SelectedWorkspaceModel}">
+                            <Button VerticalAlignment="Center"
+                                    Command="{Binding Path=CheckInCommand}"
+                                    DataContext="{Binding Path=SelectedWorkspaceModel}">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Width="16"
                                            Height="16"
@@ -100,7 +102,9 @@
 
                             <Separator />
 
-                            <Button Command="{Binding ShelveCommand}" DataContext="{Binding Path=SelectedWorkspaceModel}">
+                            <Button VerticalAlignment="Center"
+                                    Command="{Binding ShelveCommand}"
+                                    DataContext="{Binding Path=SelectedWorkspaceModel}">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Width="16"
                                            Height="16"
@@ -110,7 +114,9 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button Command="{Binding UnshelveCommand}" DataContext="{Binding Path=SelectedWorkspaceModel}">
+                            <Button VerticalAlignment="Center"
+                                    Command="{Binding UnshelveCommand}"
+                                    DataContext="{Binding Path=SelectedWorkspaceModel}">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Width="16"
                                            Height="16"
@@ -121,7 +127,8 @@
                             </Button>
 
                             <Separator />
-                            <ToggleButton DataContext="{Binding Path=SelectedWorkspaceModel}"
+                            <ToggleButton VerticalAlignment="Center"
+                                          DataContext="{Binding Path=SelectedWorkspaceModel}"
                                           IsChecked="{Binding Path=FilterSolution}"
                                           IsEnabled="{Binding Path=SolutionIsOpen}"
                                           ToolTip="Filter by Solution">
@@ -144,14 +151,16 @@
                                 <Button>Cmp with Latest</Button>
                             -->
 
-                            <Button Command="{Binding Path=ViewPendingChangeCommand}"
+                            <Button VerticalAlignment="Center"
+                                    Command="{Binding Path=ViewPendingChangeCommand}"
                                     CommandParameter="{Binding ElementName=PendingChangesListView,
                                                                Path=SelectedItems}"
                                     DataContext="{Binding Path=SelectedWorkspaceModel}">
                                 View File
                             </Button>
 
-                            <Button Command="{Binding Path=UndoPendingChangeCommand}"
+                            <Button VerticalAlignment="Center"
+                                    Command="{Binding Path=UndoPendingChangeCommand}"
                                     CommandParameter="{Binding ElementName=PendingChangesListView,
                                                                Path=SelectedItems}"
                                     DataContext="{Binding Path=SelectedWorkspaceModel}"
@@ -163,7 +172,9 @@
 
                             <Separator />
 
-                            <Button Command="{Binding Path=RefreshPendingChangesCommand}" DataContext="{Binding Path=SelectedWorkspaceModel}">
+                            <Button VerticalAlignment="Center"
+                                    Command="{Binding Path=RefreshPendingChangesCommand}"
+                                    DataContext="{Binding Path=SelectedWorkspaceModel}">
                                 <Image Width="16"
                                        Height="16"
                                        Source="/TeamPilgrim.VisualStudio;component/Resources\refresh_16xLG.png" />
@@ -173,7 +184,7 @@
                             <TextBlock VerticalAlignment="Center">Workspace:</TextBlock>
                             <ComboBox Width="120"
                                       Margin="0"
-                                      VerticalAlignment="Top"
+                                      VerticalAlignment="Center"
                                       ItemsSource="{Binding Path=WorkspaceInfoModels}"
                                       SelectedValue="{Binding Path=SelectedWorkspaceInfoModel}">
 
@@ -188,10 +199,12 @@
                     </ToolBarTray>
 
                     <TextBlock DockPanel.Dock="Top">Comment:</TextBlock>
-                    <TextBox DataContext="{Binding Path=SelectedWorkspaceModel}"
+                    <TextBox AcceptsReturn="True"
+                             DataContext="{Binding Path=SelectedWorkspaceModel}"
                              DockPanel.Dock="Top"
                              Text="{Binding Path=Comment,
-                                            UpdateSourceTrigger=PropertyChanged}" />
+                                            UpdateSourceTrigger=PropertyChanged}"
+                             TextWrapping="Wrap" />
 
                     <ListView x:Name="PendingChangesListView"
                               HorizontalAlignment="Stretch"
