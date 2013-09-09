@@ -129,8 +129,10 @@
     <Compile Include="Business\Services\VisualStudio\TeamFoundation\CommandHandlerPackageWrapper.cs" />
     <Compile Include="Business\Services\VisualStudio\WorkItems\OpenWorkItemHelperWrapper.cs" />
     <Compile Include="Business\Services\VisualStudio\WorkItems\WitDefaultCommandHandlerWrapper.cs" />
+    <Compile Include="Common\AttachedProperties\PreviewKeyDownReturnPlusControl.cs" />
     <Compile Include="Common\AttachedProperties\GridViewSort.cs" />
     <Compile Include="Common\AttachedProperties\IKeyEventSelector.cs" />
+    <Compile Include="Common\AttachedProperties\PreviewKeyDownControlZ.cs" />
     <Compile Include="Common\AttachedProperties\PreviewKeyDownReturnOnly.cs" />
     <Compile Include="Common\AttachedProperties\PreviewKeyDownReturnPlusShift.cs" />
     <Compile Include="Common\AttachedProperties\PreviewSpaceKeyDownSelectPendingChanges.cs" />
