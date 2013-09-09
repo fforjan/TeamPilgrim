@@ -219,6 +219,12 @@
                               attachedProperties:PreviewKeyDownReturnPlusShift.Command="{Binding Path=CompareWithLatestCommand}"
                               attachedProperties:PreviewKeyDownReturnPlusShift.CommandParameter="{Binding ElementName=PendingChangesListView,
                                                                                                  Path=SelectedItems}"
+                              attachedProperties:PreviewKeyDownReturnPlusControl.Command="{Binding Path=CompareWithWorkspaceCommand}"
+                              attachedProperties:PreviewKeyDownReturnPlusControl.CommandParameter="{Binding ElementName=PendingChangesListView,
+                                                                                                    Path=SelectedItems}"
+                              attachedProperties:PreviewKeyDownControlZ.Command="{Binding Path=UndoPendingChangeCommand}"
+                              attachedProperties:PreviewKeyDownControlZ.CommandParameter="{Binding ElementName=PendingChangesListView,
+                                                                                          Path=SelectedItems}"
                               attachedProperties:PreviewSpaceKeyDownSelectPendingChanges.Command="{Binding Path=SelectPendingChangesCommand}"
                               listViewLayout:ListViewLayoutManager.Enabled="true">
 
