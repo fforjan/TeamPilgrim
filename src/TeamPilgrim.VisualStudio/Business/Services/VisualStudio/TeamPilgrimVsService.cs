@@ -227,7 +227,7 @@ namespace JustAProgrammer.TeamPilgrim.VisualStudio.Business.Services.VisualStudi
 
                 result.Add(path);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 result.Add(path);
             }
