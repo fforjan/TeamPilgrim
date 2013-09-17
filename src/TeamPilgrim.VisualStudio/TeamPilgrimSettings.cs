@@ -45,7 +45,7 @@ namespace JustAProgrammer.TeamPilgrim.VisualStudio
             {
                 _iniData = _parser.LoadFile(GetSettingsFilePath);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 _iniData = new IniData();
                 SelectedWorkItemCheckinAction = SelectedWorkItemCheckinAction;
