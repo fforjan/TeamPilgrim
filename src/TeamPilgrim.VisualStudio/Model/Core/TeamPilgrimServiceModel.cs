@@ -177,7 +177,6 @@ namespace JustAProgrammer.TeamPilgrim.VisualStudio.Model.Core
                     ConnectedStatus = args.Status;
                 };
 
-            RefreshCommand = new RelayCommand(Refresh, CanRefresh);
             TfsConnectCommand = new RelayCommand(TfsConnect, CanTfsConnect);
             ShowResolveConflicttManagerCommand = new RelayCommand(ShowResolveConflicttManager, CanShowResolveConflicttManager);
 
@@ -346,9 +345,7 @@ namespace JustAProgrammer.TeamPilgrim.VisualStudio.Model.Core
 
         #region Refresh Command
 
-        public RelayCommand RefreshCommand { get; private set; }
-
-        private void Refresh()
+        protected override void Refresh()
         {
             var activeProjectContext = teamPilgrimVsService.ActiveProjectContext;
             if (activeProjectContext != null &&
@@ -358,7 +355,7 @@ namespace JustAProgrammer.TeamPilgrim.VisualStudio.Model.Core
             }
         }
 
-        private bool CanRefresh()
+		protected override bool CanRefresh()
         {
             return true;
         }
